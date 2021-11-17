@@ -7,7 +7,9 @@ export const getServerSideProps = async (pageContext) => {
             "Authorization" : `Bearer ${process.env.GRAPH_CMS_TOKEN}`
         }
     })
+
     const pageSlug = pageContext.query.slug
+    
 
     const query = gql`
     query($pageSlug: String!) {
@@ -30,12 +32,12 @@ export const getServerSideProps = async (pageContext) => {
       }
     }
     `
-
+    
     const variables = {
         pageSlug,
     }
 
-    const data = await graphQLClient.request(query)
+    const data = await graphQLClient.request(query, variables)
     const video = data.video
 
     return {

@@ -1,10 +1,11 @@
 import {gql, GraphQLClient} from "graphql-request"
+import Section from "../components/Section"
 
 export const getStaticProps = async () =>{
   const url = process.env.ENDPOINT
   const graphQLClient = new GraphQLClient(url,{
     headers: {
-      "Authorization" : process.env.GRAPH_CMS_TOKEN
+      "Authorization" : `Bearer ${process.env.GRAPH_CMS_TOKEN}`
     }
   })
 
@@ -37,11 +38,43 @@ export const getStaticProps = async () =>{
   }
 }
 
+
+
+
+
 const Home = ({videos})=> {
+  const randomVideo = (videos) => {
+    return videos[Math.floor(Math.random() * videos.length)]
+  }
+
+  const filterVideos =(videos,genre) => {
+    return videos.filter((video) => video.tags.includes(genre))
+  }
+
+
   return (
-    <div>
-      hello world
-    </div>
+    <>
+      <div className='app'>
+        <div className='main-video'>
+          <img src={randomVideo(videos).thumbnail.url} alt={randomVideo(videos).title}/>
+        </div>
+
+        <div className='video-feed'>
+          <Section genre={'Family'} videos={filterVideos(videos, 'family')}/>
+          <Section genre={'Thriller'} videos={filterVideos(videos, 'thriller')} />
+          <Section genre={'Classic'} videos={filterVideos(videos, 'classic')} />
+          <Section genre={'Pixar'} videos={filterVideos(videos, 'pixar')}/>
+          <Section genre={'Marvel'} videos={filterVideos(videos, 'marvel')}/>
+          <Section genre={'National Geographic'} videos={filterVideos(videos, 'nationalgeographic')}/>
+          <Section genre={'Disney'} videos={filterVideos(videos, 'disney')}/>
+          <Section genre={'Star Wars'} videos={filterVideos(videos, 'starwars')}/>
+        </div>
+      </div>
+
+
+
+
+    </>
   )
 }
 

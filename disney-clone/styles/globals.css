@@ -59,10 +59,46 @@ a {
   margin-top: 30%;
   margin-left: 50px;
   max-width: 50%;
+  border-radius: 25px;
+}
+
+.filling{
+  margin: 5%;
 }
 
 .video-overlay{
+  /* position: absolute;
+  border-radius: 35px; */
+  margin-left:25%;
+  display: block;
+  position: relative;
+  width: 9rem;
+  height: 4rem;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  background: rgba(22, 22, 16, 0.75);
+  color:white;
+}
+
+.video-overlay:hover{
+  cursor: pointer;
+  border-color:white;
+}
+
+.go-back{
+  text-align: center;
+  display: block;
   position: absolute;
+  width: 9rem;
+  height: 4rem;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  background: rgba(22, 22, 16, 0.75);
+  color:white;
+}
+
+.go-back:hover{
+  border-color:white;
 }
 
 .info-footer{

@@ -65,16 +65,20 @@ const Video = ({video}) => {
           {!watching && <img className='video-image' src={video.thumbnail.url} alt={video.title}/>}
           {!watching && 
             <div className='info'>
-              <p>{video.tags.join(', ')}</p>
-              <p>{video.description}</p>
-              <a href="/"> <p>go back</p> </a>
-              <button 
-                className={'video-overlay'}
-                onClick={() => {
-                  changeToSeen(video.slug)
-                  watching ? setWatching(false): setWatching(true)
-                }}
-                >Play</button>
+              <div className="filling">
+                <h4>{video.tags.join(', ')}</h4>
+                <p>{video.description}</p>
+                
+                <a className='go-back' href="/"> <p>go back</p> </a>
+                
+                <button 
+                  className={'video-overlay'}
+                  onClick={() => {
+                    changeToSeen(video.slug)
+                    watching ? setWatching(false): setWatching(true)
+                  }}
+                  >Play video</button>
+              </div>
             </div>
           }
           {watching && (
@@ -92,3 +96,8 @@ const Video = ({video}) => {
 }
 
 export default Video
+
+
+
+
+{/* <a href="https://www.youtube.com/watch?v=xwZ5ilioQio" target="_blank" class="hero_content_play" title="Watch on YouTube">Watch on YouTube</a> */}
